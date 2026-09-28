@@ -4,9 +4,9 @@
     --cor-secundaria: #00d2ff;
     --cor-secundaria-hover: #00b4db;
     --cor-sucesso: #38b000;       /* Verde para sucesso */
+    --cor-sucesso-hover: #70e000;
     --cor-erro: #d00000;          /* Vermelho para erro */
     --cor-aviso: #ffb703;         /* Amarelo para aviso */
-    --cor-sucesso-hover: #70e000;
     --cor-texto-escuro: #1e293b;
     --cor-texto-claro: #ffffff;
     --cor-fundo-leve: #f1f5f9;
@@ -30,7 +30,7 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--cor-fundo-leve);
     color: var(--cor-texto-escuro);
     line-height: 1.6;
@@ -51,20 +51,25 @@ nav {
     flex-wrap: wrap;
     gap: 20px;
 }
+.logotipo img { height: 50px; width: auto; }
+.contato { font-size: 0.9rem; color: var(--cor-texto-escuro); }
 .menu { display: flex; list-style: none; gap: 15px; }
 
 /* Botões */
-.botao-cadastro, .botao-projetos {
+.botao-cadastro, .botao-projetos, .botao-home {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: bold;
     transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
 }
 .botao-cadastro { background-color: var(--cor-sucesso); color: white; }
 .botao-cadastro:hover { background-color: var(--cor-sucesso-hover); transform: translateY(-2px); }
 .botao-projetos { background-color: var(--cor-secundaria); color: var(--cor-primaria); }
 .botao-projetos:hover { background-color: var(--cor-secundaria-hover); transform: translateY(-2px); }
+.botao-home { background-color: var(--cor-primaria); color: var(--cor-texto-claro); }
+.botao-home:hover { background-color: #1e293b; transform: translateY(-2px); }
 
 /* Feedback Visual */
 .feedback-sucesso {
@@ -90,29 +95,71 @@ nav {
     min-height: 500px;
     background: linear-gradient(135deg, var(--cor-primaria) 0%, #1e293b 100%);
 }
+.hero-conteudo { padding: var(--espaco-xl); }
+.hero-titulo { color: var(--cor-texto-claro); font-size: var(--fonte-titulo-lg); }
+.hero-descricao { color: #94a3b8; font-size: var(--fonte-corpo); }
+
+/* Página Projetos */
+.container-projeto {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espaco-xl);
+}
+.bloco-projeto {
+    margin-bottom: var(--espaco-xl);
+    background-color: var(--cor-fundo-leve);
+    padding: var(--espaco-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.titulo-projeto h1 {
+    font-size: var(--fonte-titulo-md);
+    color: var(--cor-primaria);
+    margin-bottom: var(--espaco-sm);
+}
+.subtitulo {
+    font-size: var(--fonte-subtitulo);
+    color: #475569;
+}
+
+/* Galeria de Fotos */
+.galeria-fotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espaco-lg);
+    justify-content: center;
+}
+.item-galeria {
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: center;
+}
+.item-galeria img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.legenda-foto {
+    margin-top: var(--espaco-sm);
+    font-size: var(--fonte-suporte);
+    color: var(--cor-texto-escuro);
+}
 
 /* Responsividade - Breakpoints Padronizados */
 @media (max-width: 1200px) {
-    /* Ajustes para desktops médios */
     .container-grid-12 { grid-template-columns: repeat(10, 1fr); }
 }
 @media (max-width: 1024px) {
-    /* Ajustes para tablets grandes */
     .container-grid-12 { grid-template-columns: repeat(8, 1fr); }
 }
 @media (max-width: 768px) {
-    /* Ajustes para tablets pequenos */
     .hero-bancada { grid-template-columns: 1fr; }
     .hero-imagem { height: 300px; grid-row: 1; }
     .container-grid-12 { grid-template-columns: repeat(6, 1fr); }
+    .galeria-fotos { flex-direction: column; align-items: center; }
 }
 @media (max-width: 480px) {
-    /* Ajustes para celulares */
     .container-grid-12 { grid-template-columns: 1fr; }
     .sidebar, .main-content, .card-half, .card-third { grid-column: span 1; }
-}
-@media (max-width: 320px) {
-    /* Ajustes para celulares muito pequenos */
-    body { font-size: 0.9rem; }
-    .hero-titulo { font-size: 1.8rem; }
 }
